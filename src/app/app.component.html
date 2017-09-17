@@ -1,3 +1,107 @@
-<h1>
-  {{title}}
-</h1>
+
+<div *ngIf="!apps" style="text-align:center;width:100%;height:100%">
+  <img src="assets/img/balls-5.svg" style="margin-top: 3%; height: 300px; text-align:center;width: 200px"><br>
+  <h3>Getting ready, Please wait</h3>
+</div>
+
+<div *ngIf="apps" class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+    </div>
+    <img src="assets/img/who-black.png" class="pull-right" style="width:200px;margin-right: 15px;margin-bottom: 10px;">
+  </div>
+  <div>
+    <nav class="navbar navbar-default" style="height: 90px;background-color: #4AB08D;">
+      <!--<img src="assets/img/background.svg" />-->
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h4 style="color:white;font-size:30px;font-weight:bold;line-height: 70px">NATIONAL HEALTH WORKFORCE ACCOUNTS ONLINE DATA PLATFORM</h4>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <a href="../../../dhis-web-commons-security/logout.action" class="btn btn-primary pull-right">Logout</a>
+      <a href="../../../api/documents/OCoAAGYwapP/data" class="btn btn-default pull-right">User Guide</a>
+      <h4><b>Welcome {{user.name}}</b></h4><br />
+      <ol>
+        <li *ngIf="!(user | isRole:'yyN03lDNQ7t')">
+          <div class="list-header">NHWA maturity assessment</div>
+          <!--<div class="list-header-text"></div>-->
+          <ul>
+            <li><a  href="../../../dhis-web-dataentry/index.action"><img src="../../../icons/dhis-web-dataentry.png" style="width: 50px;"></a>
+              NHWA maturity assessment enables countries to assess their national information system
+              and its capacity to address the NHWA indicators.</li>
+          </ul>
+        </li>
+        <li *ngIf="!(user | isRole:'yyN03lDNQ7t')">
+          <div class="list-header">Validate existing baseline data</div>
+          <!--<div class="list-header-text"></div>-->
+          <ul>
+            <li><a  href="../../../dhis-web-pivot/index.html?id=mElD0yiuFpU"><img src="../../../icons/dhis-web-reporting.png" style="width: 50px;"></a>The validation exercise enables countries to view existing data and undertake necessary
+              action of data correction/update as required.</li>
+          </ul>
+        </li>
+        <li *ngIf="!(user | isRole:'yyN03lDNQ7t')">
+          <div class="list-header">NHWA data entry</div>
+          <div class="list-header-text">Data entry into the system can be done (i)directly through the system interface or (ii) as batch upload
+          through excel sheets</div>
+          <ul class="row">
+            <li class="col-sm-4"><img src="../../../icons/dhis-web-dataentry.png" style="width: 50px;"><a  href="../../../dhis-web-dataentry/index.action">Data entry through the system interface</a></li>
+            <li class="col-sm-4"><img src="../../../api/apps/excelimporterntd/images/logo.png" style="width: 50px;"><a  href="../../../api/apps/excelimporterntd/index.html">Batch upload through excel sheets</a></li>
+          </ul>
+        </li>
+        <li><div class="list-header">Visualise data</div>
+          <div class="list-header-text">Access programmed data infographics or create customised data visualisation with the existing data</div>
+          <ul class="row">
+            <li class="col-sm-4"><img src="../../../icons/dhis-web-pivot.png" style="width: 50px;"><a href="../../../dhis-web-pivot/index.action">Pivot Table</a><br />
+              Enables users to create pivot tables, using
+              available data
+            </li>
+            <li class="col-sm-4"><img src="../../../icons/dhis-web-visualizer.png" style="width: 50px;"><a href="../../../dhis-web-visualizer/index.action">Data Visualizer</a><br />
+              Enables users to easily create dynamic data
+              analysis and visualizations through charts
+              and data tables.
+            </li>
+            <li class="col-sm-4"><img src="../../../icons/dhis-web-mapping.png" style="width: 50px;"><a href="../../../dhis-web-mapping/index.action">GIS</a><br />
+            Enables users to visualize data in Geographical location system.
+            </li>
+            <li class="col-sm-4"><img src="../../../icons/dhis-web-dashboard-integration.png" style="width: 50px;"><a href="../../../dhis-web-dashboard-integration/index.action">Dashboard</a><br />
+              Access pre populated data infographics based on
+              existing data
+            </li>
+            <li class="col-sm-4"><img src="../../../api/apps/idashboard/assets/logo.png" style="width: 50px;"><a href="../../../api/apps/idashboard/index.html">iDashboard</a><br />
+              Access to an interactive dashboard
+            </li>
+            <li class="col-sm-4" *ngIf="level == 3"><img src="assets/img/nwh.png" style="width: 50px;">
+              <a href="/dhis-web-reporting/getReportParams.action?uid=sZmM11PNIFd&mode=report&type=HTML">NHWA Country profile</a><br />
+              Access to the NHWA Country profile
+            </li>
+            <li class="col-sm-4" *ngIf="level == 2 || level == 1"><img src="assets/img/nwh.png" style="width: 50px;">
+              <a href="/dhis-web-reporting/getReportParams.action?uid=hwWt8xBN0Y7&mode=report&type=HTML">NHWA Regional profile</a><br />
+              Access to the NHWA Regional profile
+            </li>
+          </ul>
+        </li>
+        <li><div class="list-header">Other Useful features</div>
+          <ul class="row">
+            <template ngFor let-app [ngForOf]="apps | authorized:user">
+              <li class="col-sm-4" *ngIf="!(user | isRole:'yyN03lDNQ7t') || app.displayName == 'Browser Cache Cleaner' || app.displayName == 'Messaging'">
+                <img src="../../{{app.icon}}" style="width: 50px;"/><a href="../../{{app.defaultAction}}">{{app.displayName}}</a> <br />
+                <span *ngIf="app.displayName == 'Data Quality'">Enables the users to run data quality checks such as validation  and Std dev outlier analysis.</span>
+                <span *ngIf="app.displayName == 'Messaging'">Enables the user to communicate with other users in the systen and give feedback to the system administrators.</span>
+                <span *ngIf="app.displayName == 'Browser Cache Cleaner'">Enables the users to clear the borwser cache.</span>
+              </li>
+            </template>
+
+            <li *ngIf="!(user | isRole:'yyN03lDNQ7t')" class="col-sm-4"><img src="../../../icons/dataapproval.png" style="width: 50px;"/><a href="../../../dhis-web-reporting/showDataApprovalForm.action">Approval</a><br />
+              Enables the users to approves the data submitted in the system
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
