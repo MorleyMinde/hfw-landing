@@ -24,7 +24,7 @@
   <div class="row">
     <div class="col-sm-12">
       <a href="../../../dhis-web-commons-security/logout.action" class="btn btn-primary pull-right">Logout</a>
-      <a href="../../../api/documents/OCoAAGYwapP/data" class="btn btn-default pull-right">User Guide</a>
+      <a href="../../../api/documents/OCoAAGYwapP/data" class="btn btn-default pull-right" target="_blank">User Guide</a>
       <h4><b>Welcome {{user.name}}</b></h4><br />
       <ol>
         <li *ngIf="!(user | isRole:'yyN03lDNQ7t')">
@@ -50,7 +50,7 @@
           through excel sheets</div>
           <ul class="row">
             <li class="col-sm-4"><img src="../../../icons/dhis-web-dataentry.png" style="width: 50px;"><a  href="../../../dhis-web-dataentry/index.action">Data entry through the system interface</a></li>
-            <li class="col-sm-4"><img src="../../../api/apps/excelimporterntd/images/logo.png" style="width: 50px;"><a  href="../../../api/apps/excelimporterntd/index.html">Batch upload through excel sheets</a></li>
+            <li class="col-sm-4"><img src="../../../api/apps/Excel_Importer15/images/logo.png" style="width: 50px;"><a  href="../../../api/apps/Excel_Importer15/index.html">Batch upload through excel sheets</a></li>
           </ul>
         </li>
         <li><div class="list-header">Visualise data</div>
@@ -72,17 +72,21 @@
               Access pre populated data infographics based on
               existing data
             </li>
-            <li class="col-sm-4"><img src="../../../api/apps/idashboard/assets/logo.png" style="width: 50px;"><a href="../../../api/apps/idashboard/index.html">iDashboard</a><br />
+            <li class="col-sm-4"><img src="../../../api/apps/idashboard/assets/img/icon-48x48.png" style="width: 50px;"><a href="../../../api/apps/idashboard/index.html">iDashboard</a><br />
               Access to an interactive dashboard
             </li>
             <li class="col-sm-4" *ngIf="level == 3"><img src="assets/img/nwh.png" style="width: 50px;">
-              <a href="/dhis-web-reporting/getReportParams.action?uid=sZmM11PNIFd&mode=report&type=HTML">NHWA Country profile</a><br />
+              <a href="../../../dhis-web-reporting/getReportParams.action?uid=sZmM11PNIFd&mode=report&type=HTML">NHWA Country profile</a><br />
               Access to the NHWA Country profile
             </li>
-            <li class="col-sm-4" *ngIf="level == 2 || level == 1"><img src="assets/img/nwh.png" style="width: 50px;">
-              <a href="/dhis-web-reporting/getReportParams.action?uid=hwWt8xBN0Y7&mode=report&type=HTML">NHWA Regional profile</a><br />
-              Access to the NHWA Regional profile
+            <li class="col-sm-4"><img src="../../../icons/dhis-web-reporting.png" style="width: 50px;">
+              <a href="../../../dhis-web-reporting/displayViewReportForm.action">NHWA reports</a><br />
+              Access to the NHWA reports
             </li>
+            <!--<li class="col-sm-4" *ngIf="level == 2 || level == 1"><img src="assets/img/nwh.png" style="width: 50px;">
+              <a href="../../../dhis-web-reporting/getReportParams.action?uid=hwWt8xBN0Y7&mode=report&type=HTML">NHWA Regional profile</a><br />
+              Access to the NHWA Regional profile
+            </li>-->
           </ul>
         </li>
         <li><div class="list-header">Other Useful features</div>
@@ -91,13 +95,15 @@
               <li class="col-sm-4" *ngIf="!(user | isRole:'yyN03lDNQ7t') || app.displayName == 'Browser Cache Cleaner' || app.displayName == 'Messaging'">
                 <img src="../../{{app.icon}}" style="width: 50px;"/><a href="../../{{app.defaultAction}}">{{app.displayName}}</a> <br />
                 <span *ngIf="app.displayName == 'Data Quality'">Enables the users to run data quality checks such as validation  and Std dev outlier analysis.</span>
-                <span *ngIf="app.displayName == 'Messaging'">Enables the user to communicate with other users in the systen and give feedback to the system administrators.</span>
-                <span *ngIf="app.displayName == 'Browser Cache Cleaner'">Enables the users to clear the borwser cache.</span>
+                <span *ngIf="app.displayName == 'Messaging'">Enables the user to communicate with other users in the system and give feedback to the system administrators.</span>
+                <span *ngIf="app.displayName == 'Browser Cache Cleaner'">Enables the users to clear the browser cache.</span>
               </li>
             </template>
-
-            <li *ngIf="!(user | isRole:'yyN03lDNQ7t')" class="col-sm-4"><img src="../../../icons/dataapproval.png" style="width: 50px;"/><a href="../../../dhis-web-reporting/showDataApprovalForm.action">Approval</a><br />
+            <li *ngIf="!((user | isRole:'yyN03lDNQ7t') || (user | isRole:'AgUVz1sVqiB'))" class="col-sm-4"><img src="../../../icons/dataapproval.png" style="width: 50px;"/><a href="../../../dhis-web-reporting/showDataApprovalForm.action">Approval</a><br />
               Enables the users to approves the data submitted in the system
+            </li>
+            <li class="col-sm-4"><img src="../../../icons/function-profile.png" style="width: 50px;"/><a href="../../../dhis-web-user-profile/#/profile">User Profile</a><br />
+              Enable the user to set his profile and account credentials
             </li>
           </ul>
         </li>

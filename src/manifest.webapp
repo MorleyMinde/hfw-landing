@@ -4,9 +4,9 @@
     "description": "Landing Page",
     "launch_path": "index.html",
     "icons": {
-        "16": "assets/landing.png",
-        "48": "assets/landing.png",
-        "128": "assets/landing.png"
+        "16": "assets/img/logo.png",
+        "48": "assets/img/logo.png",
+        "128": "assets/img/logo.png"
     },
     "developer": {
         "name": "Vincent Minde",
